@@ -13,19 +13,17 @@ public class HiddenWord {
 		- guess == guess.toUpperCase()
 	*/
 	public String getHint(String guess) {
-		char[] hintChars = new char[word.length()];
+		String hintStr = "";
 		for(int i = 0; i < word.length(); i++) {
-			char c = guess.charAt(i);
-			char e = '*';
-			for(int j = 0; j < word.length(); j++) {
-				if(c == word.charAt(j)) {
-					if(j == i) { e = c; }
-					else { e = '+'; }
-				}
-			}
-			hintChars[i] = e;
+			if (guess.charAt(i) == word.charAt(i))
+				hintStr += guess.charAt(i);
+			else if (word.indexOf(guess.charAt(i)) != -1)
+				hintStr += '+';
+			else
+				hintStr += '*';
+
 		}
-		return new String(hintChars);
+		return hintStr;
 	}
 
 }
